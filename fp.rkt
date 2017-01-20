@@ -6,9 +6,15 @@
            ((NULL? lis) lis) ; if the list is null simply return null list
            (ELSE (append  (reverse-general (CDR lis))
                   
-                  (list (CAR lis)) 
+                  ; if CAR function produce a list itself:
+                  ; we have to apply reverse-general to it as well
+                  ; using IF to
+                          (IF (LIST? (CAR lis))
+                              (reverse-general (CAR lis))
+                              ; if it returns true list is produced
+                                  ;use
+                  (list (CAR lis))) ;if the CAR produce only one atom
                   )
            )
          )
       )
-        
