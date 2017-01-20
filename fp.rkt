@@ -4,9 +4,9 @@
         ; CDR of list. CAR of list in recursive manner
         (COND
            ((NULL? lis) lis) ; if the list is null simply return null list
-           (ELSE (CONS (reverse-general (CDR lis))
+           (ELSE (append  (reverse-general (CDR lis))
                   
-                  (CAR lis) 
+                  (list (CAR lis)) 
                   )
            )
          )
