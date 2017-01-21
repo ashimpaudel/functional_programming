@@ -32,20 +32,19 @@
       )
 
 
-
 ;;; 3. procedure sum-up-numbers-general 
-(DEFINE (sum-up-numbers-simple L)
+(DEFINE (sum-up-numbers-general L)
         ; using conditions to handle different cases
         (COND
         ((NULL? L) 0) ; First case: return 0 when null list is passed
-        ((NUMBER? (CAR L)) (+ (CAR L) (sum-up-numbers-simple (CDR L)))) ; if the first element is number sum that with recursive call of other element
+        ((NUMBER? (CAR L)) (+ (CAR L) (sum-up-numbers-general (CDR L)))) ; if the first element is number sum that with recursive call of other element
         (ELSE 
          ; Now the first element can be non numeric or be a list
          ; when it is a list
          (IF (LIST? (CAR L))
-         (+ (sum-up-numbers-simple (CAR L)) (sum-up-numbers-simple (CDR L)))
-         (+ 0 (sum-up-numbers-simple (CDR L)))
-              ) ; if the first element is not number sum 0 with recursive call of other element
+         (+ (sum-up-numbers-general (CAR L)) (sum-up-numbers-general (CDR L)))
+         (+ 0 (sum-up-numbers-general (CDR L))) ; if the first element is not number sum 0 with recursive call of other element
+              ) 
            )
-      )
-        )
+       )
+    )
