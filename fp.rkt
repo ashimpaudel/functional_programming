@@ -13,7 +13,7 @@
         (COND
            ((NULL? lis) lis) ; if the list is null simply return null list
            (ELSE 
-            (IF (LIST? (CAR lis))
+            (IF  (LIST? (CAR lis))
                 
             ( append  (reverse-general (CDR lis))
                   
@@ -21,7 +21,7 @@
                   ; we have to apply reverse-general to it as well
                   ; using IF to
                          
-                     (list(reverse-sim (CAR lis))) ; if not used list at front will remove every other braces except first and last
+                     (list(reverse-general (CAR lis))) ; if not used list at front will remove every other braces except first and last
                               
                   )
             (append (reverse-general (CDR lis)) 
