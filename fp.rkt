@@ -1,3 +1,11 @@
+(DEFINE (reverse-sim list1)
+        (COND
+         ((NULL? list1) list1)
+         (ELSE (append (reverse-sim (CDR list1))
+                       (list (CAR list1)))
+               )
+         )
+        )
 ;;; The reverse-general procedure reverses the list
 (DEFINE (reverse-general lis)
         ;figuring out an way to get the last element of list
@@ -9,12 +17,11 @@
                   ; if CAR function produce a list itself:
                   ; we have to apply reverse-general to it as well
                   ; using IF to
-                          (IF (LIST? (CAR lis))
-                              (reverse-general (CAR lis))
-                              ; if it returns true list is produced
-                                  ;use
-                  (list (CAR lis))) ;if the CAR produce only one atom
+                         
+                              (reverse-sim (CAR lis))
+                              
                   )
            )
          )
       )
+        
