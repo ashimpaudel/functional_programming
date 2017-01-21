@@ -12,16 +12,22 @@
         ; CDR of list. CAR of list in recursive manner
         (COND
            ((NULL? lis) lis) ; if the list is null simply return null list
-           (ELSE (append  (reverse-general (CDR lis))
+           (ELSE 
+            (IF (LIST? (CAR lis))
+                
+            ( append  (reverse-general (CDR lis))
                   
                   ; if CAR function produce a list itself:
                   ; we have to apply reverse-general to it as well
                   ; using IF to
                          
-                              (reverse-sim (CAR lis))
+                     (list(reverse-sim (CAR lis))) ; if not used list at front will remove every other braces except first and last
                               
                   )
+            (append (reverse-general (CDR lis)) 
+                    (list (CAR lis)))
+            
            )
          )
       )
-        
+        )
