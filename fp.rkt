@@ -23,10 +23,10 @@
 
 ;;; 2. procedure sum-up-numbers-simple 
 (DEFINE (sum-up-numbers-simple L)
-        ; if and only if the first element of list is number we  do the following:
+        ; using conditions to handle different cases
         (COND
-        ((NULL? L) 0)
-        ((NUMBER? (CAR L)) (+ (CAR L) (sum-up-numbers-simple (CDR L))))
-        (ELSE (+ 0 (sum-up-numbers-simple (CDR L))))
+        ((NULL? L) 0) ; First case: return 0 when null list is passed
+        ((NUMBER? (CAR L)) (+ (CAR L) (sum-up-numbers-simple (CDR L)))) ; if the first element is number sum that with recursive call of other element
+        (ELSE (+ 0 (sum-up-numbers-simple (CDR L)))) ; if the first element is not number sum 0 with recursive call of other element
            )
       )
