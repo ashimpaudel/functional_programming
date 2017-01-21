@@ -23,8 +23,13 @@
 
 ;;; 2. procedure sum-up-numbers-simple 
 (DEFINE (sum-up-numbers-simple L)
+        ; if and only if the first element of list is number we  do the following:
+        (IF (NUMBER? (CAR L))
+                   
+        (+ (CAR L) sum-up-numbers-simple(CDR L))
         
-        (+ (CAR L) (CAR(CDR L)))
+       ;else when the first element is not num
+        (+ 0 (sum-up-numbers-simple(CDR L)))
         )
 
-        
+        )
