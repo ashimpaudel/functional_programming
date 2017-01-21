@@ -27,6 +27,6 @@
         (COND
         ((NULL? L) 0)
         ((NUMBER? (CAR L)) (+ (CAR L) (sum-up-numbers-simple (CDR L))))
-        
+        (ELSE (+ 0 (sum-up-numbers-simple (CDR L))))
            )
       )
