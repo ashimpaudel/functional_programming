@@ -65,3 +65,17 @@
          (ELSE (find_min (CDR list1))) ; else (when first item is larger) applying find_min function to rest of items will be the minimum
          )
       )
+
+
+(DEFINE (find_max list1)
+        
+        (COND
+         ( (NOT (NUMBER? (CAR list1))) (find_max (CDR list1)) ) ; skips the non-numeric character
+         ( (NULL? (CDR list1)) (CAR list1));if there's only one item in list, it is the maximum
+         
+         ((> (CAR list1) (find_max (CDR list1)) ) (CAR list1)  ) ;if first item of list is greater than minimum of rest item in list, return first item as maximum
+         
+         (ELSE (find_max (CDR list1))) ; else (when max of rest is greater than first item) applying find_max function to rest of items will be the maximum
+         )
+      )
+                 
