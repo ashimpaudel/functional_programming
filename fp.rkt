@@ -48,3 +48,19 @@
            )
        )
     )
+
+
+
+;;; 4. procedure min-above-min
+; helper function find_min which will find the minimum number in a list
+; logic: compare first item with minimum of rest of item. Base case: if list has only one item it's the minimum
+(DEFINE (find_min list1)
+        
+        (COND
+         ( (NULL? (CDR list1))  (CAR list1) ) ;if there's only one item in list, it is the minimum
+         ((< (CAR list1) (find_min (CDR list1)) ) (CAR list1)  ) ;if first item of list is less than minimum of rest item in list, return first item as minimum
+         (ELSE (find_min (CDR list1))) ; else (when first item is larger) applying find_min function to rest of items will be the minimum
+         )
+        
+)
+                               
