@@ -81,15 +81,38 @@
          )
       )
                                
+(DEFINE (compare_special x y)
+        (COND
+        ((> x y) x)
+        (ELSE #f)))
+       
+        
+                               
 (DEFINE (min-above-min L1 L2)
         ; Find min of L2 first and store it somewhere or maybe not store
         (COND
-         ( base case)
+         ((NULL? (CDR L1)) (compare_special (CAR L1) (find_min L2)));( base case), if only one item preset in the list, simply compare that item with min of l2
          ;general case
          ;logic compare first item of L1 with min of L2 and compare that result with min of rest
-         ((< (return_greater (CAR L1) (find_min L2)) (min-above-min (CDR L1) L2))  ((return_greater (CAR L1) (find_min L2))))
+         ;there can be two cases: one where 
+         ; look whether compare_Special of car1 a number, it it is a number get the least of CAR l1 and recursively calling remaining
+         (NUMBER? (compare_special (CAR L1 ) (find_min L2))
+                  
+                  (COND
+                  ((< (CAR L1) (min-above-min (CDR L1) (L2)) ) (CAR L1))
+                  (ELSE (min-above-min (CDR L1)(L2)))
+                  )
+                  
+                  )
+                  
+         (ELSE (min-above-min (CDR L1 ) L2))
+                  
+         ;((< (return_greater (CAR L1) (find_min L2)) (min-above-min (CDR L1) L2))  ((return_greater (CAR L1) (find_min L2))))
          
          )
+        )
+        
+         
          
                                
                  
