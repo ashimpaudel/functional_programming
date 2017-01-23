@@ -81,7 +81,15 @@
          )
       )
                                
-;(DEFINE (min-above-min L1 L2)
-        
+(DEFINE (min-above-min L1 L2)
+        ; Find min of L2 first and store it somewhere or maybe not store
+        (COND
+         ( base case)
+         ;general case
+         ;logic compare first item of L1 with min of L2 and compare that result with min of rest
+         ((< (return_greater (CAR L1) (find_min L2)) (min-above-min (CDR L1) L2))  ((return_greater (CAR L1) (find_min L2))))
+         
+         )
+         
                                
                  
