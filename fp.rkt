@@ -51,6 +51,8 @@
 
 
 
+
+
 ;;; 4. procedure min-above-min
 ; helper function find_min which will find the minimum number in a list
 ; logic: compare first item with minimum of rest of item. Base case: if list has only one item it's the minimum
@@ -96,10 +98,10 @@
          ;logic compare first item of L1 with min of L2 and compare that result with min of rest
          ;there can be two cases: one where 
          ; look whether compare_Special of car1 a number, it it is a number get the least of CAR l1 and recursively calling remaining
-         (NUMBER? (compare_special (CAR L1 ) (find_min L2))
+         ((NUMBER? (compare_special (CAR L1 ) (find_min L2)))
                   
                   (COND
-                  ((< (CAR L1) (min-above-min (CDR L1) (L2)) ) (CAR L1))
+                  ((< (CAR L1) (min-above-min (CDR L1) L2) ) (CAR L1))
                   (ELSE (min-above-min (CDR L1)(L2)))
                   )
                   
@@ -111,6 +113,7 @@
          
          )
         )
+        
         
          
          
