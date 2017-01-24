@@ -85,14 +85,17 @@
                                
 (DEFINE (compare_special x y)
         (COND
+         ((NOT (NUMBER? x)) #F)
         ((> x y) x)
-        (ELSE #f)))
+        (ELSE #F)))
        
         
                                
 (DEFINE (min-above-min L1 L2)
         ; Find min of L2 first and store it somewhere or maybe not store
         (COND
+         ((NULL? L1) #F)
+         ((NULL? L2) (find_min L1))
          ((NULL? (CDR L1)) (compare_special (CAR L1) (find_min L2)));( base case), if only one item preset in the list, simply compare that item with min of l2
          ;general case
          ;logic compare first item of L1 with min of L2 and compare that result with min of rest
@@ -101,8 +104,9 @@
          ((NUMBER? (compare_special (CAR L1 ) (find_min L2)))
                   
                   (COND
+                   ((NOT (NUMBER? (min-above-min (CDR L1) L2))) (CAR L1))
                   ((< (CAR L1) (min-above-min (CDR L1) L2) ) (CAR L1))
-                  (ELSE (min-above-min (CDR L1)(L2)))
+                  (ELSE (min-above-min (CDR L1) L2))
                   )
                   
                   )
@@ -113,7 +117,18 @@
          
          )
         )
-        
+;test cases passed:
+;1
+;2
+;3
+; 4 (logic passed)output: 9999999
+; 5 passed
+;6 passed
+;7 passed
+;8 passed
+;9 passed
+;10 not passed
+
         
          
          
