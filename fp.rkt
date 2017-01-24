@@ -53,15 +53,18 @@
 
 
 
+
+
 ;;; 4. procedure min-above-min
 ; helper function find_min which will find the minimum number in a list
 ; logic: compare first item with minimum of rest of item. Base case: if list has only one item it's the minimum
 (DEFINE (find_min list1)
         
         (COND
-         ((NULL? List1) +999999) ; if the list is null return the highest value, ideally + infinity
+         ((NULL? List1) #F) ; if the list is null return the highest value, ideally + infinity
          ( (NOT (NUMBER? (CAR list1))) (find_min (CDR list1)) ) ; skips the non-numeric character
          ( (NULL? (CDR list1)) (CAR list1));if there's only one item in list, it is the minimum
+         ( (NOT (NUMBER? (find_min (CDR list1)))) (CAR list1))
          
          ((< (CAR list1) (find_min (CDR list1)) ) (CAR list1)  ) ;if first item of list is less than minimum of rest item in list, return first item as minimum
          
@@ -70,18 +73,6 @@
       )
 
 
-(DEFINE (find_max list1)
-        
-        (COND
-          ((NULL? List1) -999999)  ;if the list is null return the lowest value, ideally - infinity                  
-         ( (NOT (NUMBER? (CAR list1))) (find_max (CDR list1)) ) ; skips the non-numeric character
-         ( (NULL? (CDR list1)) (CAR list1));if there's only one item in list, it is the maximum
-         
-         ((> (CAR list1) (find_max (CDR list1)) ) (CAR list1)  ) ;if first item of list is greater than minimum of rest item in list, return first item as maximum
-         
-         (ELSE (find_max (CDR list1))) ; else (when max of rest is greater than first item) applying find_max function to rest of items will be the maximum
-         )
-      )
                                
 (DEFINE (compare_special x y)
         (COND
@@ -104,8 +95,9 @@
          ((NUMBER? (compare_special (CAR L1 ) (find_min L2)))
                   
                   (COND
-                  ((< (CAR L1) (min-above-min (CDR L1) L2) ) (CAR L1))
-                  (ELSE (min-above-min (CDR L1) L2))
+                   ((NOT (NUMBER? (min-above-min (CDR L1) L2))) (CAR L1)) ;handles the case where CDR of L1 don't have any numeric character
+                  ((< (CAR L1) (min-above-min (CDR L1) L2) ) (CAR L1)) ; If CAR L1 is less compare to value of min-above-min of CDR L1 return CAR L1
+                  (ELSE (min-above-min (CDR L1) L2)) ; else return min-above-min of CDR of L1
                   )
                   
                   )
@@ -116,20 +108,3 @@
          
          )
         )
-;test cases passed:
-;1
-;2
-;3
-; 4 (logic passed)output: 9999999
-; 5 passed
-;6 passed
-;7 passed
-;8 passed
-;9 passed
-;10 not passed
-
-        
-         
-         
-                               
-                 
