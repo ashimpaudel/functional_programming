@@ -104,7 +104,6 @@
          ((NUMBER? (compare_special (CAR L1 ) (find_min L2)))
                   
                   (COND
-                   ((NOT (NUMBER? (min-above-min (CDR L1) L2))) (CAR L1))
                   ((< (CAR L1) (min-above-min (CDR L1) L2) ) (CAR L1))
                   (ELSE (min-above-min (CDR L1) L2))
                   )
